@@ -1,0 +1,4 @@
+Development Steps:
+1)install passport for authentication
+
+1) Vendor Signup proccess
