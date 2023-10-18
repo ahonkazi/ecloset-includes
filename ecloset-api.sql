@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2023 at 10:49 AM
+-- Generation Time: Oct 18, 2023 at 04:13 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -215,7 +215,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (63, '2023_10_16_183938_add_is_primary_product_variation_options_table', 40),
 (64, '2023_10_17_103508_drop_image_product_stocks_table', 41),
 (65, '2023_10_17_113527_create_specifications_table', 42),
-(66, '2023_10_17_122228_create_product_features_table', 43);
+(66, '2023_10_17_122228_create_product_features_table', 43),
+(67, '2023_10_18_072506_create_tags_table', 44),
+(68, '2023_10_18_072740_create_product_tags_table', 45);
 
 -- --------------------------------------------------------
 
@@ -450,7 +452,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `vendor_id`, `title`, `code`, `discription`, `slug`, `category_id`, `sub_category_id`, `sub_sub_category_id`, `is_approved`, `is_published`, `is_featured`, `product_image`, `created_at`, `updated_at`) VALUES
-(3, 22, 'Plextone G25 3.5mm Gaming Earphones', 'p6883ElEaPlex', 'The plextone g25 comes with extension cords, desktop adapters, and Microphones.The new gaming earphone features like Receive Sensitivity: 108dB Frequency Response: 20-20kHz ,Cable Length: (m) 1.6m and Drive unit: 10mm.It also comes with 1.6 meters cable length. The plextone gaming headphone gives you decent sound and high-fidelity performance. the powerful bass stereo makes the beat more dynamic and activates you in the sport. The plextone has an anti-interference microphone, which gives you a clearer sound for group chatting. The plextone g25 is more flexible to use. It comes with no warranty.', 'electronics-devices-earphones-plextone-g25-35mm-gaming-earphones', 11, 8, 5, 1, 0, 0, '/storage/images/ecloset_pdimg24611697437717.png', '2023-10-16 06:28:37', '2023-10-16 06:29:24');
+(3, 22, 'A4tech Bloody M590i ENC Wired Gaming Headphone', 'p6883ElEaPlex', 'The M590i Gaming Headphone with 50mm M.O.C.I. Hybrid Diaphragm Technology is a cutting-edge biotechnology that mixes carbon fiber and mycelium culture. provides a distinct sound that blends crisp trebles, crisp midrange tones, and deep, satisfying bass to give gamers a competitive gaming edge', 'electronics-devices-earphones-plextone-g25-35mm-gaming-earphones', 11, 8, 5, 1, 0, 0, '/storage/images/ecloset_pd_img89311697539074.jpg', '2023-10-16 06:28:37', '2023-10-17 10:37:54');
 
 -- --------------------------------------------------------
 
@@ -503,6 +505,29 @@ CREATE TABLE `product_stocks` (
 
 INSERT INTO `product_stocks` (`id`, `product_id`, `vendor_id`, `primary_option_id`, `secondary_option_id`, `price`, `discount_in_percent`, `stock`, `created_at`, `updated_at`) VALUES
 (4, 3, 22, 46, 51, 431, 2.00, 400, '2023-10-17 05:00:43', '2023-10-17 05:00:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_tags`
+--
+
+CREATE TABLE `product_tags` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tag_id` bigint(20) UNSIGNED NOT NULL,
+  `vendor_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `product_tags`
+--
+
+INSERT INTO `product_tags` (`id`, `tag_id`, `vendor_id`, `product_id`, `created_at`, `updated_at`) VALUES
+(3, 2, 22, 3, '2023-10-18 02:11:47', '2023-10-18 02:11:47'),
+(4, 1, 22, 3, '2023-10-18 02:12:16', '2023-10-18 02:12:16');
 
 -- --------------------------------------------------------
 
@@ -661,6 +686,28 @@ INSERT INTO `sub_sub_categories` (`id`, `sub_category_id`, `creator_id`, `name`,
 (3, 7, 21, 'Dell Laptop', 'dell-laptop', 1, '2023-10-16 06:17:59', '2023-10-16 06:17:59'),
 (4, 7, 21, 'Hp Laptop', 'hp-laptop', 1, '2023-10-16 06:18:07', '2023-10-16 06:18:07'),
 (5, 8, 21, 'Gaming Earphones', 'gaming-earphones', 1, '2023-10-16 06:24:25', '2023-10-16 06:24:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tags`
+--
+
+CREATE TABLE `tags` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 'headphone', 'headphone', '2023-10-18 01:52:46', '2023-10-18 01:52:46'),
+(2, 'computer headphone', 'computer-headphone', '2023-10-18 01:54:17', '2023-10-18 01:54:17');
 
 -- --------------------------------------------------------
 
@@ -910,6 +957,15 @@ ALTER TABLE `product_stocks`
   ADD KEY `product_stocks_secondary_option_id_foreign` (`secondary_option_id`);
 
 --
+-- Indexes for table `product_tags`
+--
+ALTER TABLE `product_tags`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_tags_tag_id_foreign` (`tag_id`),
+  ADD KEY `product_tags_vendor_id_foreign` (`vendor_id`),
+  ADD KEY `product_tags_product_id_foreign` (`product_id`);
+
+--
 -- Indexes for table `product_variations`
 --
 ALTER TABLE `product_variations`
@@ -956,6 +1012,12 @@ ALTER TABLE `sub_sub_categories`
   ADD PRIMARY KEY (`id`),
   ADD KEY `sub_sub_categories_subcategory_id_foreign` (`sub_category_id`),
   ADD KEY `sub_sub_categories_creator_id_foreign` (`creator_id`);
+
+--
+-- Indexes for table `tags`
+--
+ALTER TABLE `tags`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -1029,7 +1091,7 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -1080,6 +1142,12 @@ ALTER TABLE `product_stocks`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `product_tags`
+--
+ALTER TABLE `product_tags`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `product_variations`
 --
 ALTER TABLE `product_variations`
@@ -1114,6 +1182,12 @@ ALTER TABLE `sub_categories`
 --
 ALTER TABLE `sub_sub_categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tags`
+--
+ALTER TABLE `tags`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -1193,6 +1267,14 @@ ALTER TABLE `product_stocks`
   ADD CONSTRAINT `product_stocks_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `product_stocks_secondary_option_id_foreign` FOREIGN KEY (`secondary_option_id`) REFERENCES `product_variation_options` (`id`),
   ADD CONSTRAINT `product_stocks_vendor_id_foreign` FOREIGN KEY (`vendor_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `product_tags`
+--
+ALTER TABLE `product_tags`
+  ADD CONSTRAINT `product_tags_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `product_tags_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`),
+  ADD CONSTRAINT `product_tags_vendor_id_foreign` FOREIGN KEY (`vendor_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `product_variations`
