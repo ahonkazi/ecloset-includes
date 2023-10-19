@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2023 at 04:13 AM
+-- Generation Time: Oct 19, 2023 at 09:53 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -71,6 +71,28 @@ INSERT INTO `category_icons` (`id`, `svg_code`, `created_at`, `updated_at`) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `change_email_otps`
+--
+
+CREATE TABLE `change_email_otps` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `otp` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `change_email_otps`
+--
+
+INSERT INTO `change_email_otps` (`id`, `email`, `otp`, `created_at`, `updated_at`) VALUES
+(1, 'jispozelmi@gufum.com', 671921, '2023-10-19 07:35:24', '2023-10-19 07:35:24'),
+(4, 'timinef720@unbiex.com', 655350, '2023-10-19 07:51:37', '2023-10-19 07:51:37');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -107,7 +129,10 @@ CREATE TABLE `logins` (
 
 INSERT INTO `logins` (`id`, `ip`, `browser`, `platform`, `version`, `created_at`, `updated_at`, `user_id`) VALUES
 (2, '127.0.0.1', '0', '0', '0', '2023-10-16 04:17:26', '2023-10-16 04:17:26', 21),
-(3, '127.0.0.1', '0', '0', '0', '2023-10-16 04:21:44', '2023-10-16 04:21:44', 22);
+(3, '127.0.0.1', '0', '0', '0', '2023-10-16 04:21:44', '2023-10-16 04:21:44', 22),
+(4, '127.0.0.1', '0', '0', '0', '2023-10-19 06:50:40', '2023-10-19 06:50:40', 23),
+(5, '127.0.0.1', '0', '0', '0', '2023-10-19 06:50:55', '2023-10-19 06:50:55', 23),
+(6, '127.0.0.1', '0', '0', '0', '2023-10-19 06:54:22', '2023-10-19 06:54:22', 23);
 
 -- --------------------------------------------------------
 
@@ -217,7 +242,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (65, '2023_10_17_113527_create_specifications_table', 42),
 (66, '2023_10_17_122228_create_product_features_table', 43),
 (67, '2023_10_18_072506_create_tags_table', 44),
-(68, '2023_10_18_072740_create_product_tags_table', 45);
+(68, '2023_10_18_072740_create_product_tags_table', 45),
+(69, '2023_10_19_130834_create_change_email_otps_table', 46);
 
 -- --------------------------------------------------------
 
@@ -308,11 +334,14 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('448b4f21c3bc7257d58a0a55cdbee8a25a379f5dc9988aad5c47c1decca4a98485fee04b027d4f86', 22, 3, 'accessToken', '[]', 0, '2023-10-16 04:21:44', '2023-10-16 04:21:44', '2024-10-16 10:21:44'),
 ('55cbd256183aa278db88641bee3ff59008ebac66a432d0036a6a11086864024e17cf55d3adee8b0b', 17, 3, 'accessToken', '[]', 0, '2023-09-29 13:43:32', '2023-09-29 13:43:32', '2024-09-29 19:43:32'),
 ('8161b2b6c4f37d586b1c183cfec6a17ff7cbc67bdf445327c65fffe190d70004a2cbf23ca404f4f1', 21, 3, 'accessToken', '[]', 0, '2023-10-16 04:17:26', '2023-10-16 04:17:26', '2024-10-16 10:17:26'),
+('8cb6e4c77157e76c05887f85ccab96e4db5e2891fcb1857ddb2d8f41037d30fe3d0e946b2cf13bbd', 23, 3, 'accessToken', '[]', 0, '2023-10-19 06:50:41', '2023-10-19 06:50:41', '2024-10-19 12:50:41'),
 ('94fdce8c364998c8dcf69525b9f5dae3d564f68db785118517aad3c0b78ffc2241eb7472a2e542e4', 16, 3, 'accessToken', '[]', 0, '2023-10-02 16:07:32', '2023-10-02 16:07:32', '2024-10-02 22:07:32'),
+('99c561c5d46fec30fce59a4ba23b4f0fd838964e7eeb62b3994db4bd41dfcdb4dd5b57814e357f9a', 23, 3, 'accessToken', '[]', 0, '2023-10-19 06:50:55', '2023-10-19 06:50:55', '2024-10-19 12:50:55'),
 ('9ff3b4509bbf2cbab7c3ef4126eb557e4a173727487542f99fc1c38804c54be9fbab50a1db94f4dd', 19, 3, 'accessToken', '[]', 0, '2023-10-16 03:58:14', '2023-10-16 03:58:14', '2024-10-16 09:58:14'),
 ('a0a58d5f1351b27523563151f3ea955e1da14dca69a3e84cb08ed172fe8960dd5c20969056d37a94', 17, 3, 'accessToken', '[]', 0, '2023-10-02 15:39:18', '2023-10-02 15:39:18', '2024-10-02 21:39:18'),
 ('a4aee01d97c34793ce1edc558531dd9e41b7135ce9cd2d5e89fc29451d371aa8e566ae3784043bf4', 17, 3, 'accessToken', '[]', 0, '2023-10-02 15:50:04', '2023-10-02 15:50:04', '2024-10-02 21:50:04'),
-('a51f056a4504a3506aee4cc2a5070e7346bddf763d9541ea02b4d292f3754c363b9662dbcd4eeda5', 17, 3, 'accessToken', '[]', 0, '2023-09-29 13:38:24', '2023-09-29 13:38:24', '2024-09-29 19:38:24');
+('a51f056a4504a3506aee4cc2a5070e7346bddf763d9541ea02b4d292f3754c363b9662dbcd4eeda5', 17, 3, 'accessToken', '[]', 0, '2023-09-29 13:38:24', '2023-09-29 13:38:24', '2024-09-29 19:38:24'),
+('a88086284fa50f9d1f9c90aa108b4bb29e51b9a14b20888f116bab760da8255490c4b4df5fa5a92b', 23, 3, 'accessToken', '[]', 0, '2023-10-19 06:54:22', '2023-10-19 06:54:22', '2024-10-19 12:54:22');
 
 -- --------------------------------------------------------
 
@@ -605,7 +634,8 @@ CREATE TABLE `register_otps` (
 INSERT INTO `register_otps` (`id`, `email`, `otp`, `created_at`, `updated_at`) VALUES
 (15, 'jahidatamanna8573@gmail.com', 702260, '2023-09-09 15:13:41', '2023-09-09 15:13:41'),
 (18, 'aohinuzzaman420@gmail.com', 619919, '2023-10-16 04:17:11', '2023-10-16 04:17:11'),
-(19, 'aohinuzzamanahon@gmail.com', 705488, '2023-10-16 04:21:10', '2023-10-16 04:21:10');
+(19, 'aohinuzzamanahon@gmail.com', 705488, '2023-10-16 04:21:10', '2023-10-16 04:21:10'),
+(20, 'timinef720@unbiex.com', 458903, '2023-10-19 06:48:55', '2023-10-19 06:48:55');
 
 -- --------------------------------------------------------
 
@@ -738,7 +768,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `firstName`, `lastName`, `email`, `email_verified_at`, `password`, `profile_pic`, `two_step_verification`, `remember_token`, `created_at`, `updated_at`, `user_role`, `is_approved`, `unique_id`) VALUES
 (21, 'Ahon', 'Khan', 'aohinuzzaman420@gmail.com', NULL, '$2y$10$Q60.fB4T1fyKxPnPlKryKuaNKex5o9xOiTCQdBxZ7CacdXXJCXhJ2', '/storage/images/ecloset_img22781697429846.jpg', 0, NULL, '2023-10-16 04:17:26', '2023-10-16 04:17:26', 3, 1, 711151697429846),
-(22, 'Daraz', 'BD', 'aohinuzzamanahon@gmail.com', NULL, '$2y$10$oiERR7GE0ouUQG18vifEJek7Rr0wlYvmSkVHP5YC/tc7pm.D/Swa6', '/storage/images/ecloset_img60661697430104.jpg', 0, NULL, '2023-10-16 04:21:44', '2023-10-16 04:29:35', 2, 1, 776271697430104);
+(22, 'Daraz', 'BD', 'aohinuzzamanahon@gmail.com', NULL, '$2y$10$oiERR7GE0ouUQG18vifEJek7Rr0wlYvmSkVHP5YC/tc7pm.D/Swa6', '/storage/images/ecloset_img60661697430104.jpg', 0, NULL, '2023-10-16 04:21:44', '2023-10-16 04:29:35', 2, 1, 776271697430104),
+(23, 'Md', 'Ahon', 'timinef720@unbiex.com', NULL, '$2y$10$lMeEyEm2at6WDZFUr8pwhe0j3ohxQgl4GaK7.1V1zpUUNPYNALwHe', '/storage/images/ecloset_img81381697698239.png', 0, NULL, '2023-10-19 06:50:40', '2023-10-19 07:52:10', 1, 1, 343141697698240);
 
 -- --------------------------------------------------------
 
@@ -764,7 +795,8 @@ CREATE TABLE `user_details` (
 
 INSERT INTO `user_details` (`id`, `user_id`, `country`, `city`, `profession`, `date_of_birth`, `gander`, `created_at`, `updated_at`) VALUES
 (18, 21, 'Bangladesh', 'Rangpur', 'Web Designer', '2005-12-27', 'Male', '2023-10-16 04:17:26', '2023-10-16 04:17:26'),
-(19, 22, 'Bangladesh', 'Rangpur', 'Web Designer', '2005-12-27', 'Male', '2023-10-16 04:21:44', '2023-10-16 04:21:44');
+(19, 22, 'Bangladesh', 'Rangpur', 'Web Designer', '2005-12-27', 'Male', '2023-10-16 04:21:44', '2023-10-16 04:21:44'),
+(20, 23, 'Bangladesh', 'Rangpur', 'Web Designer and developer', '2005-12-27', 'Male', '2023-10-19 06:50:40', '2023-10-19 06:50:40');
 
 -- --------------------------------------------------------
 
@@ -831,6 +863,12 @@ ALTER TABLE `categories`
 -- Indexes for table `category_icons`
 --
 ALTER TABLE `category_icons`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `change_email_otps`
+--
+ALTER TABLE `change_email_otps`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1064,6 +1102,12 @@ ALTER TABLE `category_icons`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `change_email_otps`
+--
+ALTER TABLE `change_email_otps`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -1073,7 +1117,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `logins`
 --
 ALTER TABLE `logins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `login_otps`
@@ -1091,7 +1135,7 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -1163,7 +1207,7 @@ ALTER TABLE `product_variation_options`
 -- AUTO_INCREMENT for table `register_otps`
 --
 ALTER TABLE `register_otps`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `specifications`
@@ -1193,13 +1237,13 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `user_roles`
