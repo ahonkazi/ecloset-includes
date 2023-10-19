@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2023 at 09:53 AM
+-- Generation Time: Oct 19, 2023 at 02:26 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -243,7 +243,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (66, '2023_10_17_122228_create_product_features_table', 43),
 (67, '2023_10_18_072506_create_tags_table', 44),
 (68, '2023_10_18_072740_create_product_tags_table', 45),
-(69, '2023_10_19_130834_create_change_email_otps_table', 46);
+(69, '2023_10_19_130834_create_change_email_otps_table', 46),
+(70, '2023_10_19_173039_create_wish_lists_table', 47);
 
 -- --------------------------------------------------------
 
@@ -847,6 +848,27 @@ INSERT INTO `variations` (`id`, `name`, `vendor_id`, `is_primary`, `created_at`,
 (8, 'Weight', 22, 1, '2023-10-16 09:29:51', '2023-10-16 09:29:51'),
 (9, 'Flavour', 22, 0, '2023-10-16 09:30:24', '2023-10-16 09:30:24');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wish_lists`
+--
+
+CREATE TABLE `wish_lists` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `customer_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `wish_lists`
+--
+
+INSERT INTO `wish_lists` (`id`, `customer_id`, `product_id`, `created_at`, `updated_at`) VALUES
+(2, 23, 3, '2023-10-19 12:12:45', '2023-10-19 12:12:45');
+
 --
 -- Indexes for dumped tables
 --
@@ -1086,6 +1108,14 @@ ALTER TABLE `variations`
   ADD KEY `variations_vendor_id_foreign` (`vendor_id`);
 
 --
+-- Indexes for table `wish_lists`
+--
+ALTER TABLE `wish_lists`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `wish_lists_customer_id_foreign` (`customer_id`),
+  ADD KEY `wish_lists_product_id_foreign` (`product_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1135,7 +1165,7 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -1258,6 +1288,12 @@ ALTER TABLE `variations`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `wish_lists`
+--
+ALTER TABLE `wish_lists`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -1374,6 +1410,13 @@ ALTER TABLE `user_details`
 --
 ALTER TABLE `variations`
   ADD CONSTRAINT `variations_vendor_id_foreign` FOREIGN KEY (`vendor_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `wish_lists`
+--
+ALTER TABLE `wish_lists`
+  ADD CONSTRAINT `wish_lists_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `wish_lists_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
