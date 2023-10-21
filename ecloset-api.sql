@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2023 at 02:26 PM
+-- Generation Time: Oct 21, 2023 at 11:18 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -43,7 +43,8 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `creator_id`, `name`, `slug`, `is_approved`, `created_at`, `updated_at`, `icon_id`) VALUES
-(11, 22, 'Electronics Devices', 'electronics-devices', 1, '2023-10-16 06:02:00', '2023-10-16 06:03:01', 6);
+(11, 22, 'Electronics Devices', 'electronics-devices', 1, '2023-10-16 06:02:00', '2023-10-16 06:03:01', 6),
+(12, 22, 'Groceries', 'groceries', 1, '2023-10-21 08:18:25', '2023-10-21 08:19:27', 7);
 
 -- --------------------------------------------------------
 
@@ -66,7 +67,8 @@ INSERT INTO `category_icons` (`id`, `svg_code`, `created_at`, `updated_at`) VALU
 (3, '<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 24 24\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path fill=\"none\" d=\"M0 0h24v24H0z\"></path><path d=\"M10.5 13H8v-3h2.5V7.5h3V10H16v3h-2.5v2.5h-3V13zM12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z\"></path></svg>', '2023-10-16 05:50:02', '2023-10-16 05:50:02'),
 (4, '<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 512 512\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M151 23v9c0 21.038-3.39 52.724-8.523 85.336 31.097-25.51 70.354-41.053 111.2-40.756 5.227-.05 10.467.13 15.696.547 36.83 2.13 71.78 16.79 99.924 39.824-5.164-32.6-8.523-64.168-8.297-84.852l.1-9.098H151zm105 72.488c-88.543 0-160.514 71.967-160.514 160.51 0 88.543 71.97 160.516 160.514 160.516 88.543 0 160.514-71.973 160.514-160.516 0-88.543-71.97-160.51-160.514-160.51zm0 17.998c78.815 0 142.514 63.697 142.514 142.512S334.814 398.516 256 398.516c-78.815 0-142.514-63.703-142.514-142.518S177.186 113.486 256 113.486zM174.115 161.3l-12.734 12.72 76.48 76.558a18.94 18.94 0 0 0-.8 5.422A18.94 18.94 0 0 0 256 274.94a18.94 18.94 0 0 0 16.66-9.94h59.096v-17.998h-59.11a18.94 18.94 0 0 0-16.646-9.94 18.94 18.94 0 0 0-5.398.8l-76.487-76.563zm253.233 61.32v64.003h21.306V222.62h-21.306zm-57.96 172.888c-49.015 40.244-119.824 51.034-178.92 27.547-17.515-6.406-33.528-15.775-47.663-27.375 5.107 32.376 8.42 63.672 8.195 84.222l-.1 9.098H361v-9c0-20.857 3.33-52.178 8.39-84.492z\"></path></svg>', '2023-10-16 05:56:07', '2023-10-16 05:56:07'),
 (5, '<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 1024 1024\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M832 312H696v-16c0-101.6-82.4-184-184-184s-184 82.4-184 184v16H192c-17.7 0-32 14.3-32 32v536c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V344c0-17.7-14.3-32-32-32zm-432-16c0-61.9 50.1-112 112-112s112 50.1 112 112v16H400v-16zm392 544H232V384h96v88c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-88h224v88c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-88h96v456z\"></path></svg>', '2023-10-16 05:57:04', '2023-10-16 05:57:04'),
-(6, '<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 1024 1024\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M956.9 845.1L896.4 632V168c0-17.7-14.3-32-32-32h-704c-17.7 0-32 14.3-32 32v464L67.9 845.1C60.4 866 75.8 888 98 888h828.8c22.2 0 37.6-22 30.1-42.9zM200.4 208h624v395h-624V208zm228.3 608l8.1-37h150.3l8.1 37H428.7zm224 0l-19.1-86.7c-.8-3.7-4.1-6.3-7.8-6.3H398.2c-3.8 0-7 2.6-7.8 6.3L371.3 816H151l42.3-149h638.2l42.3 149H652.7z\"></path></svg>', '2023-10-16 06:00:57', '2023-10-16 06:00:57');
+(6, '<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 1024 1024\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M956.9 845.1L896.4 632V168c0-17.7-14.3-32-32-32h-704c-17.7 0-32 14.3-32 32v464L67.9 845.1C60.4 866 75.8 888 98 888h828.8c22.2 0 37.6-22 30.1-42.9zM200.4 208h624v395h-624V208zm228.3 608l8.1-37h150.3l8.1 37H428.7zm224 0l-19.1-86.7c-.8-3.7-4.1-6.3-7.8-6.3H398.2c-3.8 0-7 2.6-7.8 6.3L371.3 816H151l42.3-149h638.2l42.3 149H652.7z\"></path></svg>', '2023-10-16 06:00:57', '2023-10-16 06:00:57'),
+(7, '<svg stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" viewBox=\"0 0 24 24\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path fill=\"none\" d=\"M0 0h24v24H0z\"></path><path d=\"M20 3H9v2.4l1.81 1.45c.12.09.19.24.19.39v4.26c0 .28-.22.5-.5.5h-4c-.28 0-.5-.22-.5-.5V7.24c0-.15.07-.3.19-.39L8 5.4V3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2a2 2 0 002-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z\"></path></svg>', '2023-10-21 08:17:37', '2023-10-21 08:17:37');
 
 -- --------------------------------------------------------
 
@@ -132,7 +134,8 @@ INSERT INTO `logins` (`id`, `ip`, `browser`, `platform`, `version`, `created_at`
 (3, '127.0.0.1', '0', '0', '0', '2023-10-16 04:21:44', '2023-10-16 04:21:44', 22),
 (4, '127.0.0.1', '0', '0', '0', '2023-10-19 06:50:40', '2023-10-19 06:50:40', 23),
 (5, '127.0.0.1', '0', '0', '0', '2023-10-19 06:50:55', '2023-10-19 06:50:55', 23),
-(6, '127.0.0.1', '0', '0', '0', '2023-10-19 06:54:22', '2023-10-19 06:54:22', 23);
+(6, '127.0.0.1', '0', '0', '0', '2023-10-19 06:54:22', '2023-10-19 06:54:22', 23),
+(7, '127.0.0.1', '0', '0', '0', '2023-10-21 02:53:53', '2023-10-21 02:53:53', 21);
 
 -- --------------------------------------------------------
 
@@ -276,7 +279,16 @@ INSERT INTO `notifications` (`id`, `notification_type_id`, `read_status`, `from_
 (39, 4, 0, 22, NULL, 3, 11, 'Daraz Created a category.Review his category and approve', '2023-10-16 06:02:00', '2023-10-16 06:02:00'),
 (40, 5, 0, 21, 22, 2, 11, 'An admin approved your category..!Now you can add this category to your product', '2023-10-16 06:03:01', '2023-10-16 06:03:01'),
 (41, 6, 0, 22, NULL, 3, 3, 'Daraz added a product.Review his product and approve', '2023-10-16 06:28:37', '2023-10-16 06:28:37'),
-(42, 7, 0, 21, 22, 2, 3, 'An Admin approved your product.', '2023-10-16 06:29:24', '2023-10-16 06:29:24');
+(42, 7, 0, 21, 22, 2, 3, 'An Admin approved your product.', '2023-10-16 06:29:24', '2023-10-16 06:29:24'),
+(43, 4, 0, 22, NULL, 3, 12, 'Daraz Created a category.Review his category and approve', '2023-10-21 08:18:25', '2023-10-21 08:18:25'),
+(44, 5, 0, 21, 22, 2, 12, 'An admin approved your category..!Now you can add this category to your product', '2023-10-21 08:19:27', '2023-10-21 08:19:27'),
+(45, 4, 0, 22, NULL, 3, 9, 'Daraz Created a sub category.Review his sub category and approve', '2023-10-21 08:23:29', '2023-10-21 08:23:29'),
+(46, 5, 0, 21, 22, 2, 9, 'An admin approved your sub category..!Now you can add this sub category to your product', '2023-10-21 08:26:48', '2023-10-21 08:26:48'),
+(47, 8, 0, 22, NULL, 3, 6, 'Daraz Created a sub sub category.Review his sub category and approve', '2023-10-21 08:29:49', '2023-10-21 08:29:49'),
+(48, 8, 0, 22, NULL, 3, 7, 'Daraz Created a sub sub category.Review his sub category and approve', '2023-10-21 08:33:38', '2023-10-21 08:33:38'),
+(49, 9, 0, 21, 22, 2, 7, 'An admin approved your sub sub category..!Now you can add this sub category to your product', '2023-10-21 08:33:55', '2023-10-21 08:33:55'),
+(50, 6, 0, 22, NULL, 3, 4, 'Daraz added a product.Review his product and approve', '2023-10-21 08:43:13', '2023-10-21 08:43:13'),
+(51, 7, 0, 21, 22, 2, 4, 'An Admin approved your product.', '2023-10-21 08:43:45', '2023-10-21 08:43:45');
 
 -- --------------------------------------------------------
 
@@ -333,6 +345,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('1e40f6f4d374715b842ba036430c983244a276d2df2c4512ddcc6148fce9abbbf4b7389645a294ec', 17, 3, 'accessToken', '[]', 0, '2023-09-29 13:47:02', '2023-09-29 13:47:02', '2024-09-29 19:47:02'),
 ('37ab7abf3d4f0226ed0339b05d8933d095ef75a4bc0c02007188fa390baab95cfcd5c4fdc37c9424', 20, 3, 'accessToken', '[]', 0, '2023-10-16 04:13:18', '2023-10-16 04:13:18', '2024-10-16 10:13:18'),
 ('448b4f21c3bc7257d58a0a55cdbee8a25a379f5dc9988aad5c47c1decca4a98485fee04b027d4f86', 22, 3, 'accessToken', '[]', 0, '2023-10-16 04:21:44', '2023-10-16 04:21:44', '2024-10-16 10:21:44'),
+('4838e87ae7bec05f1f23d10db48c07f39b152abf6ae47b9322d9abb75479e3bacdcfa8f8b9633707', 21, 3, 'accessToken', '[]', 0, '2023-10-21 02:53:53', '2023-10-21 02:53:53', '2024-10-21 08:53:53'),
 ('55cbd256183aa278db88641bee3ff59008ebac66a432d0036a6a11086864024e17cf55d3adee8b0b', 17, 3, 'accessToken', '[]', 0, '2023-09-29 13:43:32', '2023-09-29 13:43:32', '2024-09-29 19:43:32'),
 ('8161b2b6c4f37d586b1c183cfec6a17ff7cbc67bdf445327c65fffe190d70004a2cbf23ca404f4f1', 21, 3, 'accessToken', '[]', 0, '2023-10-16 04:17:26', '2023-10-16 04:17:26', '2024-10-16 10:17:26'),
 ('8cb6e4c77157e76c05887f85ccab96e4db5e2891fcb1857ddb2d8f41037d30fe3d0e946b2cf13bbd', 23, 3, 'accessToken', '[]', 0, '2023-10-19 06:50:41', '2023-10-19 06:50:41', '2024-10-19 12:50:41'),
@@ -482,7 +495,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `vendor_id`, `title`, `code`, `discription`, `slug`, `category_id`, `sub_category_id`, `sub_sub_category_id`, `is_approved`, `is_published`, `is_featured`, `product_image`, `created_at`, `updated_at`) VALUES
-(3, 22, 'A4tech Bloody M590i ENC Wired Gaming Headphone', 'p6883ElEaPlex', 'The M590i Gaming Headphone with 50mm M.O.C.I. Hybrid Diaphragm Technology is a cutting-edge biotechnology that mixes carbon fiber and mycelium culture. provides a distinct sound that blends crisp trebles, crisp midrange tones, and deep, satisfying bass to give gamers a competitive gaming edge', 'electronics-devices-earphones-plextone-g25-35mm-gaming-earphones', 11, 8, 5, 1, 0, 0, '/storage/images/ecloset_pd_img89311697539074.jpg', '2023-10-16 06:28:37', '2023-10-17 10:37:54');
+(3, 22, 'A4tech Bloody M590i ENC Wired Gaming Headphone', 'p6883ElEaPlex', 'The M590i Gaming Headphone with 50mm M.O.C.I. Hybrid Diaphragm Technology is a cutting-edge biotechnology that mixes carbon fiber and mycelium culture. provides a distinct sound that blends crisp trebles, crisp midrange tones, and deep, satisfying bass to give gamers a competitive gaming edge', 'electronics-devices-earphones-plextone-g25-35mm-gaming-earphones', 11, 8, 5, 1, 0, 0, '/storage/images/ecloset_pd_img89311697539074.jpg', '2023-10-16 06:28:37', '2023-10-17 10:37:54'),
+(4, 22, 'Red Apple (Net Weight ± 50 gm)', 'p4270GrFrRed ', 'Red Delicious apples are medium-sized and have a conical shape. They are broadly round at the top and taper at the base. The thick skin turns bright red well before the fruits are fully ripe, which can lead to early harvests.', 'groceries-fruits-meat-frozen-red-apple-net-weight-50-gm', 12, 9, 7, 1, 0, 0, '/storage/images/ecloset_pdimg21131697877792.jpg', '2023-10-21 08:43:13', '2023-10-21 08:43:45');
 
 -- --------------------------------------------------------
 
@@ -534,7 +548,8 @@ CREATE TABLE `product_stocks` (
 --
 
 INSERT INTO `product_stocks` (`id`, `product_id`, `vendor_id`, `primary_option_id`, `secondary_option_id`, `price`, `discount_in_percent`, `stock`, `created_at`, `updated_at`) VALUES
-(4, 3, 22, 46, 51, 431, 2.00, 400, '2023-10-17 05:00:43', '2023-10-17 05:00:43');
+(4, 3, 22, 46, 51, 431, 2.00, 400, '2023-10-17 05:00:43', '2023-10-17 05:00:43'),
+(5, 4, 22, 52, 53, 50, 0.00, 300, '2023-10-21 09:13:16', '2023-10-21 09:13:16');
 
 -- --------------------------------------------------------
 
@@ -557,7 +572,10 @@ CREATE TABLE `product_tags` (
 
 INSERT INTO `product_tags` (`id`, `tag_id`, `vendor_id`, `product_id`, `created_at`, `updated_at`) VALUES
 (3, 2, 22, 3, '2023-10-18 02:11:47', '2023-10-18 02:11:47'),
-(4, 1, 22, 3, '2023-10-18 02:12:16', '2023-10-18 02:12:16');
+(4, 1, 22, 3, '2023-10-18 02:12:16', '2023-10-18 02:12:16'),
+(5, 3, 22, 4, '2023-10-21 09:13:47', '2023-10-21 09:13:47'),
+(6, 4, 22, 4, '2023-10-21 09:13:53', '2023-10-21 09:13:53'),
+(7, 5, 22, 4, '2023-10-21 09:14:05', '2023-10-21 09:14:05');
 
 -- --------------------------------------------------------
 
@@ -581,7 +599,10 @@ CREATE TABLE `product_variations` (
 
 INSERT INTO `product_variations` (`id`, `product_id`, `vendor_id`, `variation_id`, `created_at`, `updated_at`, `is_primary`) VALUES
 (14, 3, 22, 5, '2023-10-16 12:23:11', '2023-10-16 12:23:11', 1),
-(15, 3, 22, 6, '2023-10-16 12:23:22', '2023-10-16 12:23:22', 0);
+(15, 3, 22, 6, '2023-10-16 12:23:22', '2023-10-16 12:23:22', 0),
+(17, 4, 22, 8, '2023-10-21 09:02:12', '2023-10-21 09:02:12', 1),
+(18, 4, 22, 9, '2023-10-21 09:02:19', '2023-10-21 09:02:19', 0),
+(19, 4, 22, 7, '2023-10-21 09:02:24', '2023-10-21 09:02:24', 1);
 
 -- --------------------------------------------------------
 
@@ -612,7 +633,9 @@ INSERT INTO `product_variation_options` (`id`, `product_id`, `vendor_id`, `produ
 (48, 3, 22, 14, 'l', '2023-10-16 13:04:55', '2023-10-16 13:04:55', 1, NULL, NULL),
 (49, 3, 22, 14, 'xl', '2023-10-16 13:05:00', '2023-10-16 13:05:00', 1, NULL, NULL),
 (50, 3, 22, 15, 'Red', '2023-10-16 13:25:05', '2023-10-16 13:25:05', 0, '#fc030a', '/storage/images/ecloset_pd_img-64341697462705.png'),
-(51, 3, 22, 15, 'Pink', '2023-10-16 13:29:44', '2023-10-16 13:29:44', 0, '#FFC0CB', '/storage/images/ecloset_pd_img-27881697462984.jpg');
+(51, 3, 22, 15, 'Pink', '2023-10-16 13:29:44', '2023-10-16 13:29:44', 0, '#FFC0CB', '/storage/images/ecloset_pd_img-27881697462984.jpg'),
+(52, 4, 22, 17, '50gm', '2023-10-21 09:05:00', '2023-10-21 09:05:00', 1, NULL, NULL),
+(53, 4, 22, 18, 'red', '2023-10-21 09:09:50', '2023-10-21 09:09:50', 0, '#FF0000', '/storage/images/ecloset_pd_img-63411697879390.jpg');
 
 -- --------------------------------------------------------
 
@@ -689,7 +712,8 @@ CREATE TABLE `sub_categories` (
 INSERT INTO `sub_categories` (`id`, `category_id`, `creator_id`, `name`, `slug`, `is_approved`, `created_at`, `updated_at`) VALUES
 (6, 11, 21, 'Smartphone', 'smartphone', 1, '2023-10-16 06:09:11', '2023-10-16 06:09:11'),
 (7, 11, 21, 'Laptops', 'laptops', 1, '2023-10-16 06:09:25', '2023-10-16 06:09:25'),
-(8, 11, 21, 'Earphones', 'earphones', 1, '2023-10-16 06:23:20', '2023-10-16 06:23:20');
+(8, 11, 21, 'Earphones', 'earphones', 1, '2023-10-16 06:23:20', '2023-10-16 06:23:20'),
+(9, 12, 22, 'Fruits, Meat & Frozen', 'fruits-meat-frozen', 1, '2023-10-21 08:23:29', '2023-10-21 08:26:48');
 
 -- --------------------------------------------------------
 
@@ -716,7 +740,8 @@ INSERT INTO `sub_sub_categories` (`id`, `sub_category_id`, `creator_id`, `name`,
 (2, 7, 21, 'Microsoft Laptop', 'microsoft-laptop', 1, '2023-10-16 06:17:38', '2023-10-16 06:17:38'),
 (3, 7, 21, 'Dell Laptop', 'dell-laptop', 1, '2023-10-16 06:17:59', '2023-10-16 06:17:59'),
 (4, 7, 21, 'Hp Laptop', 'hp-laptop', 1, '2023-10-16 06:18:07', '2023-10-16 06:18:07'),
-(5, 8, 21, 'Gaming Earphones', 'gaming-earphones', 1, '2023-10-16 06:24:25', '2023-10-16 06:24:25');
+(5, 8, 21, 'Gaming Earphones', 'gaming-earphones', 1, '2023-10-16 06:24:25', '2023-10-16 06:24:25'),
+(7, 9, 22, 'Fruits', 'fruits', 1, '2023-10-21 08:33:38', '2023-10-21 08:33:55');
 
 -- --------------------------------------------------------
 
@@ -738,7 +763,10 @@ CREATE TABLE `tags` (
 
 INSERT INTO `tags` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
 (1, 'headphone', 'headphone', '2023-10-18 01:52:46', '2023-10-18 01:52:46'),
-(2, 'computer headphone', 'computer-headphone', '2023-10-18 01:54:17', '2023-10-18 01:54:17');
+(2, 'computer headphone', 'computer-headphone', '2023-10-18 01:54:17', '2023-10-18 01:54:17'),
+(3, 'red', 'red', '2023-10-21 09:13:47', '2023-10-21 09:13:47'),
+(4, 'green', 'green', '2023-10-21 09:13:53', '2023-10-21 09:13:53'),
+(5, 'redapple', 'redapple', '2023-10-21 09:14:05', '2023-10-21 09:14:05');
 
 -- --------------------------------------------------------
 
@@ -1123,13 +1151,13 @@ ALTER TABLE `wish_lists`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `category_icons`
 --
 ALTER TABLE `category_icons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `change_email_otps`
@@ -1147,7 +1175,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `logins`
 --
 ALTER TABLE `logins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `login_otps`
@@ -1171,7 +1199,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `notification_types`
@@ -1201,7 +1229,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `product_features`
@@ -1213,25 +1241,25 @@ ALTER TABLE `product_features`
 -- AUTO_INCREMENT for table `product_stocks`
 --
 ALTER TABLE `product_stocks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `product_tags`
 --
 ALTER TABLE `product_tags`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `product_variations`
 --
 ALTER TABLE `product_variations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `product_variation_options`
 --
 ALTER TABLE `product_variation_options`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `register_otps`
@@ -1249,19 +1277,19 @@ ALTER TABLE `specifications`
 -- AUTO_INCREMENT for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `sub_sub_categories`
 --
 ALTER TABLE `sub_sub_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
