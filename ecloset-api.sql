@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2023 at 11:18 AM
+-- Generation Time: Oct 22, 2023 at 07:05 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -91,6 +91,57 @@ CREATE TABLE `change_email_otps` (
 INSERT INTO `change_email_otps` (`id`, `email`, `otp`, `created_at`, `updated_at`) VALUES
 (1, 'jispozelmi@gufum.com', 671921, '2023-10-19 07:35:24', '2023-10-19 07:35:24'),
 (4, 'timinef720@unbiex.com', 655350, '2023-10-19 07:51:37', '2023-10-19 07:51:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `display_variations`
+--
+
+CREATE TABLE `display_variations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `is_primary` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `display_variations`
+--
+
+INSERT INTO `display_variations` (`id`, `name`, `is_primary`, `created_at`, `updated_at`) VALUES
+(1, 'Model', 1, '2023-10-22 04:04:53', '2023-10-22 04:04:53'),
+(2, 'Weight', 1, '2023-10-22 04:06:03', '2023-10-22 04:06:03'),
+(3, 'Size', 1, '2023-10-22 04:06:09', '2023-10-22 04:06:09'),
+(4, 'Color', 0, '2023-10-22 04:06:19', '2023-10-22 04:06:19'),
+(5, 'Flavour', 0, '2023-10-22 04:06:45', '2023-10-22 04:06:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `display_variation_options`
+--
+
+CREATE TABLE `display_variation_options` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `value` varchar(255) NOT NULL,
+  `display_variation_id` bigint(20) UNSIGNED NOT NULL,
+  `color_code` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `display_variation_options`
+--
+
+INSERT INTO `display_variation_options` (`id`, `value`, `display_variation_id`, `color_code`, `created_at`, `updated_at`) VALUES
+(1, '50 gm', 2, NULL, '2023-10-22 04:44:11', '2023-10-22 04:44:11'),
+(2, '100 gm', 2, NULL, '2023-10-22 04:44:49', '2023-10-22 04:44:49'),
+(3, '150 gm', 2, NULL, '2023-10-22 04:50:10', '2023-10-22 04:50:10'),
+(4, 'Red', 4, '#ff0000', '2023-10-22 04:54:03', '2023-10-22 04:54:03'),
+(5, 'Green', 4, '#00ff00', '2023-10-22 04:56:04', '2023-10-22 04:56:04');
 
 -- --------------------------------------------------------
 
@@ -247,7 +298,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (67, '2023_10_18_072506_create_tags_table', 44),
 (68, '2023_10_18_072740_create_product_tags_table', 45),
 (69, '2023_10_19_130834_create_change_email_otps_table', 46),
-(70, '2023_10_19_173039_create_wish_lists_table', 47);
+(70, '2023_10_19_173039_create_wish_lists_table', 47),
+(71, '2023_10_22_100144_create_display_variations_table', 48),
+(72, '2023_10_22_100248_add_display_variation_id_variations_table', 49),
+(73, '2023_10_22_101135_create_display_variation_options_table', 50),
+(74, '2023_10_22_101805_add_display_variation_option_id_product_variation_options_table', 51);
 
 -- --------------------------------------------------------
 
@@ -548,8 +603,7 @@ CREATE TABLE `product_stocks` (
 --
 
 INSERT INTO `product_stocks` (`id`, `product_id`, `vendor_id`, `primary_option_id`, `secondary_option_id`, `price`, `discount_in_percent`, `stock`, `created_at`, `updated_at`) VALUES
-(4, 3, 22, 46, 51, 431, 2.00, 400, '2023-10-17 05:00:43', '2023-10-17 05:00:43'),
-(5, 4, 22, 52, 53, 50, 0.00, 300, '2023-10-21 09:13:16', '2023-10-21 09:13:16');
+(7, 4, 22, 58, 60, 87, 0.00, 600, '2023-10-22 05:04:37', '2023-10-22 05:04:37');
 
 -- --------------------------------------------------------
 
@@ -598,11 +652,8 @@ CREATE TABLE `product_variations` (
 --
 
 INSERT INTO `product_variations` (`id`, `product_id`, `vendor_id`, `variation_id`, `created_at`, `updated_at`, `is_primary`) VALUES
-(14, 3, 22, 5, '2023-10-16 12:23:11', '2023-10-16 12:23:11', 1),
-(15, 3, 22, 6, '2023-10-16 12:23:22', '2023-10-16 12:23:22', 0),
-(17, 4, 22, 8, '2023-10-21 09:02:12', '2023-10-21 09:02:12', 1),
-(18, 4, 22, 9, '2023-10-21 09:02:19', '2023-10-21 09:02:19', 0),
-(19, 4, 22, 7, '2023-10-21 09:02:24', '2023-10-21 09:02:24', 1);
+(20, 4, 22, 13, '2023-10-22 04:09:27', '2023-10-22 04:09:27', 0),
+(21, 4, 22, 11, '2023-10-22 04:09:35', '2023-10-22 04:09:35', 1);
 
 -- --------------------------------------------------------
 
@@ -620,22 +671,20 @@ CREATE TABLE `product_variation_options` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `is_primary` tinyint(1) NOT NULL,
   `color_code` varchar(10) DEFAULT NULL,
-  `product_image` varchar(255) DEFAULT NULL
+  `product_image` varchar(255) DEFAULT NULL,
+  `display_variation_option_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `product_variation_options`
 --
 
-INSERT INTO `product_variation_options` (`id`, `product_id`, `vendor_id`, `product_variation_id`, `value`, `created_at`, `updated_at`, `is_primary`, `color_code`, `product_image`) VALUES
-(46, 3, 22, 14, 'xxl', '2023-10-16 13:04:39', '2023-10-16 13:04:39', 1, NULL, NULL),
-(47, 3, 22, 14, 'x', '2023-10-16 13:04:49', '2023-10-16 13:04:49', 1, NULL, NULL),
-(48, 3, 22, 14, 'l', '2023-10-16 13:04:55', '2023-10-16 13:04:55', 1, NULL, NULL),
-(49, 3, 22, 14, 'xl', '2023-10-16 13:05:00', '2023-10-16 13:05:00', 1, NULL, NULL),
-(50, 3, 22, 15, 'Red', '2023-10-16 13:25:05', '2023-10-16 13:25:05', 0, '#fc030a', '/storage/images/ecloset_pd_img-64341697462705.png'),
-(51, 3, 22, 15, 'Pink', '2023-10-16 13:29:44', '2023-10-16 13:29:44', 0, '#FFC0CB', '/storage/images/ecloset_pd_img-27881697462984.jpg'),
-(52, 4, 22, 17, '50gm', '2023-10-21 09:05:00', '2023-10-21 09:05:00', 1, NULL, NULL),
-(53, 4, 22, 18, 'red', '2023-10-21 09:09:50', '2023-10-21 09:09:50', 0, '#FF0000', '/storage/images/ecloset_pd_img-63411697879390.jpg');
+INSERT INTO `product_variation_options` (`id`, `product_id`, `vendor_id`, `product_variation_id`, `value`, `created_at`, `updated_at`, `is_primary`, `color_code`, `product_image`, `display_variation_option_id`) VALUES
+(54, 4, 22, 21, '50 gm', '2023-10-22 04:44:11', '2023-10-22 04:44:11', 1, NULL, NULL, 1),
+(55, 4, 22, 21, '100 gm', '2023-10-22 04:44:49', '2023-10-22 04:44:49', 1, NULL, NULL, 2),
+(58, 4, 22, 21, '150 gm', '2023-10-22 04:50:10', '2023-10-22 04:50:10', 1, NULL, NULL, 3),
+(59, 4, 22, 20, 'Red', '2023-10-22 04:54:03', '2023-10-22 04:54:03', 0, '#ff0000', '/storage/images/ecloset_pd_img-15141697950443.jpg', 4),
+(60, 4, 22, 20, 'Green', '2023-10-22 04:56:04', '2023-10-22 04:56:04', 0, '#00ff00', '/storage/images/ecloset_pd_img-26981697950564.jpg', 5);
 
 -- --------------------------------------------------------
 
@@ -862,19 +911,20 @@ CREATE TABLE `variations` (
   `vendor_id` bigint(20) UNSIGNED NOT NULL,
   `is_primary` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `display_variation_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `variations`
 --
 
-INSERT INTO `variations` (`id`, `name`, `vendor_id`, `is_primary`, `created_at`, `updated_at`) VALUES
-(5, 'Size', 22, 1, '2023-10-16 09:29:02', '2023-10-16 09:29:02'),
-(6, 'Color', 22, 0, '2023-10-16 09:29:18', '2023-10-16 09:29:18'),
-(7, 'Model', 22, 1, '2023-10-16 09:29:38', '2023-10-16 09:29:38'),
-(8, 'Weight', 22, 1, '2023-10-16 09:29:51', '2023-10-16 09:29:51'),
-(9, 'Flavour', 22, 0, '2023-10-16 09:30:24', '2023-10-16 09:30:24');
+INSERT INTO `variations` (`id`, `name`, `vendor_id`, `is_primary`, `created_at`, `updated_at`, `display_variation_id`) VALUES
+(10, 'Model', 22, 1, '2023-10-22 04:04:53', '2023-10-22 04:04:53', 1),
+(11, 'Weight', 22, 1, '2023-10-22 04:06:03', '2023-10-22 04:06:03', 2),
+(12, 'Size', 22, 1, '2023-10-22 04:06:09', '2023-10-22 04:06:09', 3),
+(13, 'Color', 22, 0, '2023-10-22 04:06:19', '2023-10-22 04:06:19', 4),
+(14, 'Flavour', 22, 0, '2023-10-22 04:06:45', '2023-10-22 04:06:45', 5);
 
 -- --------------------------------------------------------
 
@@ -920,6 +970,19 @@ ALTER TABLE `category_icons`
 --
 ALTER TABLE `change_email_otps`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `display_variations`
+--
+ALTER TABLE `display_variations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `display_variation_options`
+--
+ALTER TABLE `display_variation_options`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `display_variation_options_display_variation_id_foreign` (`display_variation_id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -1069,7 +1132,8 @@ ALTER TABLE `product_variation_options`
   ADD PRIMARY KEY (`id`),
   ADD KEY `product_variation_options_product_id_foreign` (`product_id`),
   ADD KEY `product_variation_options_vendor_id_foreign` (`vendor_id`),
-  ADD KEY `product_variation_options_product_variation_id_foreign` (`product_variation_id`);
+  ADD KEY `product_variation_options_product_variation_id_foreign` (`product_variation_id`),
+  ADD KEY `product_variation_options_display_variation_option_id_foreign` (`display_variation_option_id`);
 
 --
 -- Indexes for table `register_otps`
@@ -1133,7 +1197,8 @@ ALTER TABLE `user_roles`
 --
 ALTER TABLE `variations`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `variations_vendor_id_foreign` (`vendor_id`);
+  ADD KEY `variations_vendor_id_foreign` (`vendor_id`),
+  ADD KEY `variations_display_variation_id_foreign` (`display_variation_id`);
 
 --
 -- Indexes for table `wish_lists`
@@ -1166,6 +1231,18 @@ ALTER TABLE `change_email_otps`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `display_variations`
+--
+ALTER TABLE `display_variations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `display_variation_options`
+--
+ALTER TABLE `display_variation_options`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -1193,7 +1270,7 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -1241,7 +1318,7 @@ ALTER TABLE `product_features`
 -- AUTO_INCREMENT for table `product_stocks`
 --
 ALTER TABLE `product_stocks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `product_tags`
@@ -1253,13 +1330,13 @@ ALTER TABLE `product_tags`
 -- AUTO_INCREMENT for table `product_variations`
 --
 ALTER TABLE `product_variations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `product_variation_options`
 --
 ALTER TABLE `product_variation_options`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `register_otps`
@@ -1313,7 +1390,7 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT for table `variations`
 --
 ALTER TABLE `variations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `wish_lists`
@@ -1331,6 +1408,12 @@ ALTER TABLE `wish_lists`
 ALTER TABLE `categories`
   ADD CONSTRAINT `categories_creator_id_foreign` FOREIGN KEY (`creator_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `categories_icon_id_foreign` FOREIGN KEY (`icon_id`) REFERENCES `category_icons` (`id`);
+
+--
+-- Constraints for table `display_variation_options`
+--
+ALTER TABLE `display_variation_options`
+  ADD CONSTRAINT `display_variation_options_display_variation_id_foreign` FOREIGN KEY (`display_variation_id`) REFERENCES `display_variations` (`id`);
 
 --
 -- Constraints for table `logins`
@@ -1396,6 +1479,7 @@ ALTER TABLE `product_variations`
 -- Constraints for table `product_variation_options`
 --
 ALTER TABLE `product_variation_options`
+  ADD CONSTRAINT `product_variation_options_display_variation_option_id_foreign` FOREIGN KEY (`display_variation_option_id`) REFERENCES `display_variation_options` (`id`),
   ADD CONSTRAINT `product_variation_options_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `product_variation_options_product_variation_id_foreign` FOREIGN KEY (`product_variation_id`) REFERENCES `product_variations` (`id`),
   ADD CONSTRAINT `product_variation_options_vendor_id_foreign` FOREIGN KEY (`vendor_id`) REFERENCES `users` (`id`);
@@ -1437,6 +1521,7 @@ ALTER TABLE `user_details`
 -- Constraints for table `variations`
 --
 ALTER TABLE `variations`
+  ADD CONSTRAINT `variations_display_variation_id_foreign` FOREIGN KEY (`display_variation_id`) REFERENCES `display_variations` (`id`),
   ADD CONSTRAINT `variations_vendor_id_foreign` FOREIGN KEY (`vendor_id`) REFERENCES `users` (`id`);
 
 --
