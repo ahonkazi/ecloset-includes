@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2023 at 07:05 AM
+-- Generation Time: Oct 24, 2023 at 05:48 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -95,6 +95,34 @@ INSERT INTO `change_email_otps` (`id`, `email`, `otp`, `created_at`, `updated_at
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `customer_addresses`
+--
+
+CREATE TABLE `customer_addresses` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `customer_id` bigint(20) UNSIGNED NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `district` varchar(255) NOT NULL,
+  `sub_district` varchar(255) NOT NULL,
+  `street_address` varchar(255) NOT NULL,
+  `appartment_number` varchar(255) NOT NULL,
+  `postal_code` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `address_type_no` int(11) NOT NULL DEFAULT 3 COMMENT '1->home\r\n2->office\r\n3->default',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `customer_addresses`
+--
+
+INSERT INTO `customer_addresses` (`id`, `customer_id`, `country`, `district`, `sub_district`, `street_address`, `appartment_number`, `postal_code`, `phone`, `address_type_no`, `created_at`, `updated_at`) VALUES
+(2, 23, 'Bangladesh', 'Rangpur', 'Peerganj', 'Bhendabari,from center to routh Road', '803', '5502', '+8801313386702', 1, '2023-10-24 03:48:04', '2023-10-24 03:48:04');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `display_variations`
 --
 
@@ -141,7 +169,11 @@ INSERT INTO `display_variation_options` (`id`, `value`, `display_variation_id`, 
 (2, '100 gm', 2, NULL, '2023-10-22 04:44:49', '2023-10-22 04:44:49'),
 (3, '150 gm', 2, NULL, '2023-10-22 04:50:10', '2023-10-22 04:50:10'),
 (4, 'Red', 4, '#ff0000', '2023-10-22 04:54:03', '2023-10-22 04:54:03'),
-(5, 'Green', 4, '#00ff00', '2023-10-22 04:56:04', '2023-10-22 04:56:04');
+(5, 'Green', 4, '#00ff00', '2023-10-22 04:56:04', '2023-10-22 04:56:04'),
+(6, 'Chicken', 5, '#FF7F50', '2023-10-22 09:22:13', '2023-10-22 09:22:13'),
+(7, 'Vegetable', 5, '#3b8132', '2023-10-22 09:25:18', '2023-10-22 09:25:18'),
+(8, 'Robotics', 1, NULL, '2023-10-22 09:57:25', '2023-10-22 09:57:25'),
+(9, 'Superman', 1, NULL, '2023-10-22 09:57:45', '2023-10-22 09:57:45');
 
 -- --------------------------------------------------------
 
@@ -302,7 +334,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (71, '2023_10_22_100144_create_display_variations_table', 48),
 (72, '2023_10_22_100248_add_display_variation_id_variations_table', 49),
 (73, '2023_10_22_101135_create_display_variation_options_table', 50),
-(74, '2023_10_22_101805_add_display_variation_option_id_product_variation_options_table', 51);
+(74, '2023_10_22_101805_add_display_variation_option_id_product_variation_options_table', 51),
+(75, '2023_10_24_084905_create_customer_addresses_table', 52),
+(76, '2023_10_24_090757_create_address_types_table', 53),
+(77, '2023_10_24_091208_drop_customer_address_table', 54),
+(78, '2023_10_24_091252_create_customer_address_table', 55),
+(79, '2023_10_24_092658_drop_address_types_table', 56);
 
 -- --------------------------------------------------------
 
@@ -343,7 +380,9 @@ INSERT INTO `notifications` (`id`, `notification_type_id`, `read_status`, `from_
 (48, 8, 0, 22, NULL, 3, 7, 'Daraz Created a sub sub category.Review his sub category and approve', '2023-10-21 08:33:38', '2023-10-21 08:33:38'),
 (49, 9, 0, 21, 22, 2, 7, 'An admin approved your sub sub category..!Now you can add this sub category to your product', '2023-10-21 08:33:55', '2023-10-21 08:33:55'),
 (50, 6, 0, 22, NULL, 3, 4, 'Daraz added a product.Review his product and approve', '2023-10-21 08:43:13', '2023-10-21 08:43:13'),
-(51, 7, 0, 21, 22, 2, 4, 'An Admin approved your product.', '2023-10-21 08:43:45', '2023-10-21 08:43:45');
+(51, 7, 0, 21, 22, 2, 4, 'An Admin approved your product.', '2023-10-21 08:43:45', '2023-10-21 08:43:45'),
+(52, 6, 0, 22, NULL, 3, 5, 'Daraz added a product.Review his product and approve', '2023-10-22 09:12:10', '2023-10-22 09:12:10'),
+(53, 7, 0, 21, 22, 2, 5, 'An Admin approved your product.', '2023-10-22 09:12:20', '2023-10-22 09:12:20');
 
 -- --------------------------------------------------------
 
@@ -551,7 +590,8 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `vendor_id`, `title`, `code`, `discription`, `slug`, `category_id`, `sub_category_id`, `sub_sub_category_id`, `is_approved`, `is_published`, `is_featured`, `product_image`, `created_at`, `updated_at`) VALUES
 (3, 22, 'A4tech Bloody M590i ENC Wired Gaming Headphone', 'p6883ElEaPlex', 'The M590i Gaming Headphone with 50mm M.O.C.I. Hybrid Diaphragm Technology is a cutting-edge biotechnology that mixes carbon fiber and mycelium culture. provides a distinct sound that blends crisp trebles, crisp midrange tones, and deep, satisfying bass to give gamers a competitive gaming edge', 'electronics-devices-earphones-plextone-g25-35mm-gaming-earphones', 11, 8, 5, 1, 0, 0, '/storage/images/ecloset_pd_img89311697539074.jpg', '2023-10-16 06:28:37', '2023-10-17 10:37:54'),
-(4, 22, 'Red Apple (Net Weight ± 50 gm)', 'p4270GrFrRed ', 'Red Delicious apples are medium-sized and have a conical shape. They are broadly round at the top and taper at the base. The thick skin turns bright red well before the fruits are fully ripe, which can lead to early harvests.', 'groceries-fruits-meat-frozen-red-apple-net-weight-50-gm', 12, 9, 7, 1, 0, 0, '/storage/images/ecloset_pdimg21131697877792.jpg', '2023-10-21 08:43:13', '2023-10-21 08:43:45');
+(4, 22, 'Red Apple (Net Weight ± 50 gm)', 'p4270GrFrRed ', 'Red Delicious apples are medium-sized and have a conical shape. They are broadly round at the top and taper at the base. The thick skin turns bright red well before the fruits are fully ripe, which can lead to early harvests.', 'groceries-fruits-meat-frozen-red-apple-net-weight-50-gm', 12, 9, 7, 1, 0, 0, '/storage/images/ecloset_pdimg21131697877792.jpg', '2023-10-21 08:43:13', '2023-10-21 08:43:45'),
+(5, 22, 'California burger (Net Weight ± 200 gm)', 'p4913GrFrCali', 'A hamburger, or simply burger, is a food consisting of fillings—usually a patty of ground meat, typically beef—placed inside a sliced bun or bread roll.', 'groceries-fruits-meat-frozen-california-burger-net-weight-200-gm', 12, 9, 7, 1, 0, 0, '/storage/images/ecloset_pdimg33871697965929.jpg', '2023-10-22 09:12:10', '2023-10-22 09:12:20');
 
 -- --------------------------------------------------------
 
@@ -603,7 +643,10 @@ CREATE TABLE `product_stocks` (
 --
 
 INSERT INTO `product_stocks` (`id`, `product_id`, `vendor_id`, `primary_option_id`, `secondary_option_id`, `price`, `discount_in_percent`, `stock`, `created_at`, `updated_at`) VALUES
-(7, 4, 22, 58, 60, 87, 0.00, 600, '2023-10-22 05:04:37', '2023-10-22 05:04:37');
+(7, 4, 22, 58, 60, 87, 0.00, 600, '2023-10-22 05:04:37', '2023-10-22 05:04:37'),
+(8, 5, 22, 61, 64, 150, 0.00, 90, '2023-10-22 09:28:21', '2023-10-22 09:28:21'),
+(9, 5, 22, 61, 63, 125, 0.00, 100, '2023-10-22 09:31:14', '2023-10-22 09:31:14'),
+(10, 3, 22, 66, 67, 125, 5.00, 60, '2023-10-22 10:00:52', '2023-10-22 10:00:52');
 
 -- --------------------------------------------------------
 
@@ -653,7 +696,11 @@ CREATE TABLE `product_variations` (
 
 INSERT INTO `product_variations` (`id`, `product_id`, `vendor_id`, `variation_id`, `created_at`, `updated_at`, `is_primary`) VALUES
 (20, 4, 22, 13, '2023-10-22 04:09:27', '2023-10-22 04:09:27', 0),
-(21, 4, 22, 11, '2023-10-22 04:09:35', '2023-10-22 04:09:35', 1);
+(21, 4, 22, 11, '2023-10-22 04:09:35', '2023-10-22 04:09:35', 1),
+(22, 5, 22, 11, '2023-10-22 09:15:33', '2023-10-22 09:15:33', 1),
+(23, 5, 22, 14, '2023-10-22 09:15:41', '2023-10-22 09:15:41', 0),
+(24, 3, 22, 10, '2023-10-22 09:54:00', '2023-10-22 09:54:00', 1),
+(25, 3, 22, 13, '2023-10-22 09:54:05', '2023-10-22 09:54:05', 0);
 
 -- --------------------------------------------------------
 
@@ -684,7 +731,14 @@ INSERT INTO `product_variation_options` (`id`, `product_id`, `vendor_id`, `produ
 (55, 4, 22, 21, '100 gm', '2023-10-22 04:44:49', '2023-10-22 04:44:49', 1, NULL, NULL, 2),
 (58, 4, 22, 21, '150 gm', '2023-10-22 04:50:10', '2023-10-22 04:50:10', 1, NULL, NULL, 3),
 (59, 4, 22, 20, 'Red', '2023-10-22 04:54:03', '2023-10-22 04:54:03', 0, '#ff0000', '/storage/images/ecloset_pd_img-15141697950443.jpg', 4),
-(60, 4, 22, 20, 'Green', '2023-10-22 04:56:04', '2023-10-22 04:56:04', 0, '#00ff00', '/storage/images/ecloset_pd_img-26981697950564.jpg', 5);
+(60, 4, 22, 20, 'Green', '2023-10-22 04:56:04', '2023-10-22 04:56:04', 0, '#00ff00', '/storage/images/ecloset_pd_img-26981697950564.jpg', 5),
+(61, 5, 22, 22, '150 gm', '2023-10-22 09:17:43', '2023-10-22 09:17:43', 1, NULL, NULL, 3),
+(62, 5, 22, 22, '100 gm', '2023-10-22 09:18:32', '2023-10-22 09:18:32', 1, NULL, NULL, 2),
+(63, 5, 22, 23, 'Chicken', '2023-10-22 09:22:13', '2023-10-22 09:22:13', 0, '#FF7F50', '/storage/images/ecloset_pd_img-43851697966533.jpg', 6),
+(64, 5, 22, 23, 'Vegetable', '2023-10-22 09:25:19', '2023-10-22 09:25:19', 0, '#3b8132', '/storage/images/ecloset_pd_img-91941697966718.jpg', 7),
+(65, 3, 22, 24, 'Robotics', '2023-10-22 09:57:25', '2023-10-22 09:57:25', 1, NULL, NULL, 8),
+(66, 3, 22, 24, 'Superman', '2023-10-22 09:57:45', '2023-10-22 09:57:45', 1, NULL, NULL, 9),
+(67, 3, 22, 25, 'Red', '2023-10-22 09:58:01', '2023-10-22 09:58:01', 0, '#ff0000', '/storage/images/ecloset_pd_img-67921697968681.jpg', 4);
 
 -- --------------------------------------------------------
 
@@ -972,6 +1026,13 @@ ALTER TABLE `change_email_otps`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `customer_addresses`
+--
+ALTER TABLE `customer_addresses`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `customer_addresses_customer_id_foreign` (`customer_id`);
+
+--
 -- Indexes for table `display_variations`
 --
 ALTER TABLE `display_variations`
@@ -1231,6 +1292,12 @@ ALTER TABLE `change_email_otps`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `customer_addresses`
+--
+ALTER TABLE `customer_addresses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `display_variations`
 --
 ALTER TABLE `display_variations`
@@ -1240,7 +1307,7 @@ ALTER TABLE `display_variations`
 -- AUTO_INCREMENT for table `display_variation_options`
 --
 ALTER TABLE `display_variation_options`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1270,13 +1337,13 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `notification_types`
@@ -1306,7 +1373,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `product_features`
@@ -1318,7 +1385,7 @@ ALTER TABLE `product_features`
 -- AUTO_INCREMENT for table `product_stocks`
 --
 ALTER TABLE `product_stocks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `product_tags`
@@ -1330,13 +1397,13 @@ ALTER TABLE `product_tags`
 -- AUTO_INCREMENT for table `product_variations`
 --
 ALTER TABLE `product_variations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `product_variation_options`
 --
 ALTER TABLE `product_variation_options`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `register_otps`
@@ -1408,6 +1475,12 @@ ALTER TABLE `wish_lists`
 ALTER TABLE `categories`
   ADD CONSTRAINT `categories_creator_id_foreign` FOREIGN KEY (`creator_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `categories_icon_id_foreign` FOREIGN KEY (`icon_id`) REFERENCES `category_icons` (`id`);
+
+--
+-- Constraints for table `customer_addresses`
+--
+ALTER TABLE `customer_addresses`
+  ADD CONSTRAINT `customer_addresses_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `display_variation_options`
