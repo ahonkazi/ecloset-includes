@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2023 at 05:48 AM
+-- Generation Time: Oct 24, 2023 at 12:23 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -339,7 +339,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (76, '2023_10_24_090757_create_address_types_table', 53),
 (77, '2023_10_24_091208_drop_customer_address_table', 54),
 (78, '2023_10_24_091252_create_customer_address_table', 55),
-(79, '2023_10_24_092658_drop_address_types_table', 56);
+(79, '2023_10_24_092658_drop_address_types_table', 56),
+(80, '2023_10_24_151636_create_shipping_addresses_table', 57),
+(81, '2023_10_24_154305_create_orders_table', 58),
+(82, '2023_10_24_160131_create_order_items_table', 59);
 
 -- --------------------------------------------------------
 
@@ -527,6 +530,41 @@ CREATE TABLE `oauth_refresh_tokens` (
   `access_token_id` varchar(100) NOT NULL,
   `revoked` tinyint(1) NOT NULL,
   `expires_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `unique_id` bigint(20) NOT NULL,
+  `customer_id` bigint(20) UNSIGNED NOT NULL,
+  `shipping_id` bigint(20) UNSIGNED NOT NULL,
+  `payment_method` int(11) NOT NULL DEFAULT 1 COMMENT '1->COD,2->Bkash,3->Nagad',
+  `total_price` double NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `customer_id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `combination` varchar(255) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `coupon_code` tinyint(1) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -763,6 +801,28 @@ INSERT INTO `register_otps` (`id`, `email`, `otp`, `created_at`, `updated_at`) V
 (18, 'aohinuzzaman420@gmail.com', 619919, '2023-10-16 04:17:11', '2023-10-16 04:17:11'),
 (19, 'aohinuzzamanahon@gmail.com', 705488, '2023-10-16 04:21:10', '2023-10-16 04:21:10'),
 (20, 'timinef720@unbiex.com', 458903, '2023-10-19 06:48:55', '2023-10-19 06:48:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shipping_addresses`
+--
+
+CREATE TABLE `shipping_addresses` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `customer_id` bigint(20) UNSIGNED NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `district` varchar(255) NOT NULL,
+  `sub_district` varchar(255) NOT NULL,
+  `street_address` varchar(255) NOT NULL,
+  `appartment_number` varchar(255) NOT NULL,
+  `postal_code` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1128,6 +1188,23 @@ ALTER TABLE `oauth_refresh_tokens`
   ADD KEY `oauth_refresh_tokens_access_token_id_index` (`access_token_id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `orders_customer_id_foreign` (`customer_id`),
+  ADD KEY `orders_shipping_id_foreign` (`shipping_id`);
+
+--
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_items_customer_id_foreign` (`customer_id`),
+  ADD KEY `order_items_order_id_foreign` (`order_id`),
+  ADD KEY `order_items_product_id_foreign` (`product_id`);
+
+--
 -- Indexes for table `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
@@ -1201,6 +1278,13 @@ ALTER TABLE `product_variation_options`
 --
 ALTER TABLE `register_otps`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `shipping_addresses`
+--
+ALTER TABLE `shipping_addresses`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `shipping_addresses_customer_id_foreign` (`customer_id`);
 
 --
 -- Indexes for table `specifications`
@@ -1337,7 +1421,7 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -1362,6 +1446,18 @@ ALTER TABLE `oauth_clients`
 --
 ALTER TABLE `oauth_personal_access_clients`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1410,6 +1506,12 @@ ALTER TABLE `product_variation_options`
 --
 ALTER TABLE `register_otps`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `shipping_addresses`
+--
+ALTER TABLE `shipping_addresses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `specifications`
@@ -1509,6 +1611,21 @@ ALTER TABLE `notifications`
   ADD CONSTRAINT `notifications_receiver_role_id_foreign` FOREIGN KEY (`receiver_role_id`) REFERENCES `user_roles` (`id`);
 
 --
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `orders_shipping_id_foreign` FOREIGN KEY (`shipping_id`) REFERENCES `shipping_addresses` (`id`);
+
+--
+-- Constraints for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `order_items_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `order_items_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
+  ADD CONSTRAINT `order_items_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+
+--
 -- Constraints for table `products`
 --
 ALTER TABLE `products`
@@ -1556,6 +1673,12 @@ ALTER TABLE `product_variation_options`
   ADD CONSTRAINT `product_variation_options_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `product_variation_options_product_variation_id_foreign` FOREIGN KEY (`product_variation_id`) REFERENCES `product_variations` (`id`),
   ADD CONSTRAINT `product_variation_options_vendor_id_foreign` FOREIGN KEY (`vendor_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `shipping_addresses`
+--
+ALTER TABLE `shipping_addresses`
+  ADD CONSTRAINT `shipping_addresses_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `specifications`
